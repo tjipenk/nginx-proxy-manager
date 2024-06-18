@@ -115,7 +115,7 @@ const internalProxyHost = {
 			delete data.certificate_id;
 		}
 
-		data = internalHost.cleanLoadBalancingData(data, row);
+		data = internalHost.cleanLoadBalancingData(data, data.id);
 
 		return access.can('proxy_hosts:update', data.id)
 			.then((/*access_data*/) => {
