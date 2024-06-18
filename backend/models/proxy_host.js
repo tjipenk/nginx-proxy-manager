@@ -24,6 +24,11 @@ class ProxyHost extends Model {
 		if (typeof this.meta === 'undefined') {
 			this.meta = {};
 		}
+		
+		// default upstream_servers
+		if (typeof this.upstream_servers === 'undefined') {
+			this.upstream_servers = [];
+		}
 
 		this.domain_names.sort();
 	}
@@ -35,6 +40,12 @@ class ProxyHost extends Model {
 		if (typeof this.domain_names !== 'undefined') {
 			this.domain_names.sort();
 		}
+
+		// Sort upstream_servers
+		if (typeof this.upstream_servers !== 'undefined') {
+			this.upstream_servers.sort((a, b) => a.host.localeCompare(b.host));
+		}
+
 	}
 
 	static get name () {
@@ -46,7 +57,7 @@ class ProxyHost extends Model {
 	}
 
 	static get jsonAttributes () {
-		return ['domain_names', 'meta', 'locations'];
+		return ['domain_names', 'meta', 'locations','upstream_servers'];
 	}
 
 	static get relationMappings () {

@@ -27,7 +27,12 @@ const model = Backbone.Model.extend({
             // The following are expansions:
             owner:                   null,
             access_list:             null,
-            certificate:             null
+            certificate:             null,
+            // add load balancing
+            load_balancing_enabled: false,
+            load_balancing_method: 'round-robin',
+            upstream_servers: []
+
         };
     }
 });

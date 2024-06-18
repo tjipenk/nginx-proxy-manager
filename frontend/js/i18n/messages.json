@@ -133,7 +133,18 @@
       "allow-websocket-upgrade": "Websockets Support",
       "ignore-invalid-upstream-ssl": "Ignore Invalid SSL",
       "custom-forward-host-help": "Add a path for sub-folder forwarding.\nExample: 203.0.113.25/path/",
-      "search": "Search Host…"
+      "search": "Search Host…",
+      "load-balancing": "Load Balancing",
+      "enable-load-balancing": "Enable Load Balancing",
+      "load-balancing-method": "Load Balancing Method",
+      "round-robin": "Round Robin",
+      "ip-hash": "IP Hash",
+      "least-conn": "Least Connections",
+      "upstream-servers": "Upstream Servers",
+      "add-server": "Add Server",
+      "server-host": "Server Host",
+      "server-port": "Server Port",
+      "server-weight": "Server Weight"
     },
     "redirection-hosts": {
       "title": "Redirection Hosts",

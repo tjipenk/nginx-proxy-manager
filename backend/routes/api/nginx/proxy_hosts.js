@@ -58,6 +58,22 @@ router
 	.post((req, res, next) => {
 		apiValidator({$ref: 'endpoints/proxy-hosts#/links/1/schema'}, req.body)
 			.then((payload) => {
+				// add load balancing fields validation
+				if (payload.load_balancing_enabled) {
+					// validate upstream_servers array
+					return validator({
+						required:             ['upstream_servers'],
+						additionalProperties: false,
+						properties:           {
+							upstream_servers: {
+								$ref: 'definitions#/definitions/upstream_servers'
+							}
+						}
+					}, {
+						upstream_servers: payload.upstream_servers
+					});
+				}
+				
 				return internalProxyHost.create(res.locals.access, payload);
 			})
 			.then((result) => {
@@ -122,6 +138,21 @@ router
 		apiValidator({$ref: 'endpoints/proxy-hosts#/links/2/schema'}, req.body)
 			.then((payload) => {
 				payload.id = parseInt(req.params.host_id, 10);
+				// add load balancing fields validation
+				if (payload.load_balancing_enabled) {
+					// validate upstream_servers array
+					return validator({
+						required:             ['upstream_servers'],
+						additionalProperties: false,
+						properties:           {
+							upstream_servers: {
+								$ref: 'definitions#/definitions/upstream_servers'
+							}
+						}
+					}, {
+						upstream_servers: payload.upstream_servers
+					});
+				}
 				return internalProxyHost.update(res.locals.access, payload);
 			})
 			.then((result) => {

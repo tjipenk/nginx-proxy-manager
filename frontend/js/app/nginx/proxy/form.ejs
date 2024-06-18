@@ -271,9 +271,48 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Load Balancing -->
+                <div role="tabpanel" class="tab-pane" id="load-balancing">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Load Balancing</label>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="load-balancing-enabled" name="load_balancing_enabled" <%= load_balancing_enabled ? 'checked' : '' %>>
+                                    <label class="custom-control-label" for="load-balancing-enabled"><%- i18n('proxy-hosts', 'enable-load-balancing') %></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row load-balancing-settings" style="display: <%= load_balancing_enabled ? 'block' : 'none' %>;">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label><%- i18n('proxy-hosts', 'load-balancing-method') %></label>
+                                <select class="form-control" name="load_balancing_method">
+                                    <option value="round-robin" <%= load_balancing_method === 'round-robin' ? 'selected' : '' %>><%- i18n('proxy-hosts', 'round-robin') %></option>
+                                    <option value="ip-hash" <%= load_balancing_method === 'ip-hash' ? 'selected' : '' %>><%- i18n('proxy-hosts', 'ip-hash') %></option>
+                                    <option value="least-conn" <%= load_balancing_method === 'least-conn' ? 'selected' : '' %>><%- i18n('proxy-hosts', 'least-conn') %></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row load-balancing-settings" style="display: <%= load_balancing_enabled ? 'block' : 'none' %>;">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label><%- i18n('proxy-hosts', 'upstream-servers') %></label>
+                                <div class="upstream-servers">
+                                    <!-- Render upstream servers here -->
+                                </div>
+                                <button type="button" class="btn btn-primary add-upstream-server"><%- i18n('proxy-hosts', 'add-server') %></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
+    
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary cancel" data-dismiss="modal"><%- i18n('str', 'cancel') %></button>
         <button type="button" class="btn btn-teal save"><%- i18n('str', 'save') %></button>

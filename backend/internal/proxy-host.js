@@ -24,6 +24,7 @@ const internalProxyHost = {
 		if (create_certificate) {
 			delete data.certificate_id;
 		}
+		data = internalHost.cleanLoadBalancingData(data);
 
 		return access.can('proxy_hosts:create', data)
 			.then(() => {
@@ -113,6 +114,8 @@ const internalProxyHost = {
 		if (create_certificate) {
 			delete data.certificate_id;
 		}
+
+		data = internalHost.cleanLoadBalancingData(data, row);
 
 		return access.can('proxy_hosts:update', data.id)
 			.then((/*access_data*/) => {
